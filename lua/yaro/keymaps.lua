@@ -52,7 +52,7 @@ keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
---open Nedrtree
+--open Fileexplorer
 keymap("n", "<C-n>", "<Esc>:NvimTreeOpen <cr>", opts)
 
 -- Terminal --
@@ -61,3 +61,10 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+--Remap for dealing with word wrap
+keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
+keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+
+-- Y yank until the end of line  (note: this is now a default on master)
+keymap('n', 'Y', 'y$', { noremap = true })
