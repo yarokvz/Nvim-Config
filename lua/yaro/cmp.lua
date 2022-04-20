@@ -97,9 +97,9 @@ cmp.setup {
 		{ name = 'buffer' },
 		{ name = 'path' },
 	},
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-	},
+	--documentation = {
+	--border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+	--},
 	experimental = {
 		ghost_text = true,
 		native_menu = false,
