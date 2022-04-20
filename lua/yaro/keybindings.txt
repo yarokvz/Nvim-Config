@@ -1,0 +1,16 @@
+crt = control
+Sh = Shift
+
+NORMAL MODE
+crt + "n" = open new Nerdtree
+crt + "h" or "l" or "j" or "k" = window navigation 
+crt + "up" or "down" or "left" or "right" = reisze windows
+
+Sh + "l" or "h" = navigate buffers
+
+Alt + "j" or "k" = moving text up and down
+
+VISUAL MODE
+"<" or ">" = stay in indent mode
+
+Alt + "j" or "k" = Move text up and down
