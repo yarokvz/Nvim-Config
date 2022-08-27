@@ -20,6 +20,5 @@ lsp_installer.on_server_ready(function(server)
 		local sumneko_opts = require("yaro.lsp.settings.sumneko_lua")
 		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
 	end
-
 	server:setup(opts)
 end)

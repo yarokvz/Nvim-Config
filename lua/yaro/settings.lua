@@ -6,7 +6,7 @@ local options={
 	cmdheight = 2,
 	fileencoding = "utf-8",
 	cursorline = true,
-	relativenumber = true,
+	relativenumber = false,
 	inccommand = 'nosplit', --incremental live completion(note: this is now default on master)
 	hlsearch = true, --Set highlight on search
 	number = true, --line numbers by default
@@ -23,6 +23,7 @@ local options={
 	tabstop = 4,
 	shiftwidth = 4,
 }
+vim.g.conflict_marker_enable_highlight = 0
 
 --set colorscheme (order important)
 vim.o.termguicolors = true

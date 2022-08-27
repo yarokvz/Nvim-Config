@@ -4,41 +4,50 @@ vim.o.completeopt = 'menuone,noselect'
 -- luasnip setup
 local luasnip = require 'luasnip'
 
---icons for autocompletion
-local kind_icons = {
-	Text = "",
-	Method = "m",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "",
-	Interface = "",
-	Module = "",
-	Property = "",
-	Unit = "",
-	Value = "",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
+local check_backspace = function()
+	local col = vim.fn.col "." - 1
+	return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+end
+
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then
+  return
+end
+
+local snip_status_ok, luasnip = pcall(require, "luasnip")
+if not snip_status_ok then
+  return
+end
+
+local tabnine_status_ok, _ = pcall(require, "yaro.tabnine")
+if not tabnine_status_ok then
+  return
+end
+
+local compare = require "cmp.config.compare"
+
+local buffer_fts = {
+  "markdown",
+  "toml",
+  "yaml",
+  "json",
 }
 
-vim.g.colorizer_auto_color = 1
-vim.g.colorizer_x11_names = 1
+--icons for autocompletion
+local icons = require "yaro.icons"
+local kind_icons = icons.kind
+
+vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
+vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
+
+--vim.g.colorizer_auto_color = 1
+--vim.g.colorizer_x11_names = 1
+vim.g.cmp_active = true
 
 -- nvim-cmp setup
-local cmp = require 'cmp'
 cmp.setup {
+	preselect = cmp.PreselectMode.None,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
@@ -46,26 +55,33 @@ cmp.setup {
 	},
 	--keybindings for cmp
 	mapping = {
-		['<C-p>'] = cmp.mapping.select_prev_item(),
-		['<C-n>'] = cmp.mapping.select_next_item(),
+		['<C-j>'] = cmp.mapping.select_next_item(),
+		['<C-k>'] = cmp.mapping.select_prev_item(),
 		['<C-d>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.close(),
 		['<CR>'] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
+			--behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		},
-		['<Tab>'] = function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end,
-		['<S-Tab>'] = function(fallback)
+		["<Tab>"] = cmp.mapping(function(fallback)
+			 if cmp.visible() then
+				 cmp.select_next_item()
+			 elseif luasnip.expandable() then
+				 luasnip.expand()
+			 elseif luasnip.expand_or_jumpable() then
+				 luasnip.expand_or_jump()
+			 elseif check_backspace() then
+				 fallback()
+			 else
+				 fallback()
+			 end
+		end, {
+			"i",
+			"s",
+		}),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
@@ -73,36 +89,76 @@ cmp.setup {
 			else
 				fallback()
 			end
-		end
+		end, {
+			"i",
+			"s",
+		}),
 	},
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			-- Kind icons
-			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+			vim_item.kind = kind_icons[vim_item.kind]
 			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+			if entry.source.name == "cmp_tabnine" then
+        		-- menu = entry.completion_item.data.detail .. " " .. menu
+        		-- end
+        		vim_item.kind = icons.misc.Robot
+		        vim_item.kind_hl_group = "CmpItemKindTabnine"
+      		end
+			if entry.source.name == "emoji" then
+        		vim_item.kind = icons.misc.Smiley
+        		vim_item.kind_hl_group = "CmpItemKindEmoji"
+      		end
+			if entry.source.name == "crates" then
+        		vim_item.kind = icons.misc.Package
+        		vim_item.kind_hl_group = "CmpItemKindCrate"
+      		end
 			-- This concatonates the icons with the name of the item kind
 			vim_item.menu = ({
-				nvim_lsp = "[LSP]",
-				luasnip = "[Snippet]",
-				buffer = "[Buffer]",
-				path = "[Path]",
+			--	nvim_lsp = "[LSP]",
+			--	luasnip = "[Snippet]",
+			--	buffer = "[Buffer]",
+			--	path = "[Path]",
+				nvim_lsp = "[lsp]",
+				nvim_lua = "[lua]",
+				luasnip = "[snip]",
+				cmp_tabnine = "[tabnine]",
+				buffer = "[buff]",
+				path = "[path]",
+				emoji = "[emoji]",
 			})[entry.source.name]
 			return vim_item
-		end,
+		end
 	},
 	sources = {
 		{ name = 'nvim_lsp' },
+		{ name = 'nvim-lua' },
 		{ name = 'luasnip' },
+		{ name = 'cmp_tabnine'},
+	    { name = "crates", group_index = 1 },
 		{ name = 'buffer' },
 		{ name = 'path' },
 	},
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+	sorting = {
+		priority_weight = 2,
+		comparators = {
+			require('cmp_tabnine.compare'),
+			compare.offset,
+			compare.exact,
+			compare.score,
+			compare.recently_used,
+			compare.kind,
+			compare.sort_text,
+			compare.length,
+			compare.order,
+		},
 	},
+	window = {
+    	documentation = cmp.config.window.bordered(),
+  	},
 	experimental = {
 		ghost_text = true,
 		native_menu = false,
 	},
 }
-

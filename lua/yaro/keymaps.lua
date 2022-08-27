@@ -38,9 +38,9 @@ keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 --Bracey
-keymap("n", "<C-b>", "<Esc>:Bracey <cr>", opts)
-keymap("n", "<C-p>", "<Esc>:BraceyReload <cr>", opts)
-keymap("n", "<C-s>", "<Esc>:BraceyStop <cr>", opts)
+--keymap("n", "<C-b>", "<Esc>:Bracey <cr>", opts)
+--keymap("n", "<C-p>", "<Esc>:BraceyReload <cr>", opts)
+--keymap("n", "<C-s>", "<Esc>:BraceyStop <cr>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -48,19 +48,19 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "p", '"_dP', opts)
+--keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+--keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+--keymap("v", "p", '"_dP', opts)
 
 --open Fileexplorer
 keymap("n", "<C-n>", "<Esc>:NvimTreeOpen <cr>", opts)
 
 -- Terminal --
 -- Better terminal navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+--keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
+--keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
+--keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
+--keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 --Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
@@ -68,3 +68,10 @@ keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, sil
 
 -- Y yank until the end of line  (note: this is now a default on master)
 keymap('n', 'Y', 'y$', { noremap = true })
+
+vim.api.nvim_set_keymap(
+	"n",
+	"=",
+	"<cmd>JABSOpen<cr>",
+	{ noremap = true, silent = true, nowait = true }
+)

@@ -13,6 +13,19 @@ require('nvim-treesitter.configs').setup {
 			node_decremental = 'grm',
 		},
 	},
+	rainbo = {
+		enable = true,
+		extended_mode = false,
+		colors = {
+			"Gold",
+			"Orchid",
+			"DodgerBlue"
+		},
+		disable = { "html" }
+	},
+	playground = {
+		enable = true
+	},
 	indent = {
 		enable = true,
 	},

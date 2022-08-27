@@ -21,6 +21,7 @@ require('packer').startup(function()
 	use 'ludovicchabant/vim-gutentags' -- Automatic tags management
 	-- UI to select things (files, grep results, open buffers...)
 	use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+	use 'nvim-telescope/telescope-media-files.nvim'
 	use 'joshdick/onedark.vim' -- Theme inspired by Atom
 --	use 'itchyny/lightline.vim' -- Fancier statusline
 	-- Add indentation guides even on blank lines
@@ -28,7 +29,7 @@ require('packer').startup(function()
 	-- Add git related info in the signs columns and popups
 	use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 	-- Highlight, edit, and navigate code using a fast incremental parsing library
-	use 'nvim-treesitter/nvim-treesitter'
+	use {'nvim-treesitter/nvim-treesitter'}
 	use 'nvim-treesitter/playground'
 	-- Additional textobjects for treesitter
 	use 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -38,15 +39,19 @@ require('packer').startup(function()
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-nvim-lsp'
+	use 'hrsh7th/cmp-nvim-lua'
+	use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+	use "SmiteshP/nvim-gps"
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'L3MON4D3/LuaSnip' -- Snippets plugin
 	use 'rafamadriz/friendly-snippets'
 	use 'mattn/emmet-vim'
---	use 'chrisbra/Colorizer' 
+	use 'norcalli/nvim-colorizer.lua'
 	use 'gorodinskiy/vim-coloresque'
 	use 'turbio/bracey.vim'
 	use 'windwp/nvim-autopairs'
-	use 'akinsho/bufferline.nvim'
+--	use 'akinsho/bufferline.nvim'
+	use 'matbme/JABS.nvim'
 	use 'akinsho/toggleterm.nvim'
 	use 'goolord/alpha-nvim'
 	use {
@@ -58,4 +63,14 @@ require('packer').startup(function()
 	}
 	use 'DonnieWest/VimStudio'
 	use 'nvim-lualine/lualine.nvim'
+	use 'RRethy/vim-illuminate'
+	use {
+		"NTBBloodbath/rest.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	}
+	--use {
+  	--	'filipdutescu/renamer.nvim',
+  	--	branch = 'master',
+  	--	requires = { {'nvim-lua/plenary.nvim'} }
+	--}
 end)

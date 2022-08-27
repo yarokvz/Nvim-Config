@@ -3,6 +3,8 @@ if not status_ok then
 	return
 end
 
+local gps = require("nvim-gps")
+
 local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
 end
@@ -42,6 +44,7 @@ local branch = {
 	"branch",
 	icons_enabled = true,
 	icon = "",
+	colored = true,
 }
 
 local location = {
@@ -63,6 +66,12 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+vim.opt.laststatus = 3
+
+if gps.is_available then
+	print(gps.get_location)
+end
+
 lualine.setup({
 	options = {
 		icons_enabled = true,
@@ -74,7 +83,7 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { mode },
-		lualine_b = { branch, diagnostics },
+		lualine_b = { diagnostics },
 		lualine_c = {
 			{
 				'filename',
@@ -85,7 +94,8 @@ lualine.setup({
 					modified = '  ',
 					readonly = '  ',
 					unnamed = 'unnamed'
-				}
+				},
+				{ gps.get_location, cond = gps.is_available }
 			--	'buffers',
 			--	show_modified_status = true,
 				--show_filename_only = true,
@@ -93,8 +103,8 @@ lualine.setup({
 			}
 		},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, spaces, "encoding", filetype },--"fileformat"},
-		lualine_y = { location },
+		lualine_x = { branch, filetype },--"fileformat"},
+	--	lualine_y = { location },
 		lualine_z = { progress },
 	},
 	inactive_sections = {
@@ -107,4 +117,6 @@ lualine.setup({
 	},
 	tabline = {},
 	extensions = {},
+	-- Lua
 })
+vim.opt.laststatus = 3

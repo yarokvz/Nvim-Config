@@ -4,6 +4,8 @@ if not status_ok then
 	return
 end
 
+local icons = require "yaro.icons"
+
 local dashboard = require("alpha.themes.dashboard")
 dashboard.section.header.val = {
 	[[                               __                ]],
@@ -14,6 +16,7 @@ dashboard.section.header.val = {
 	[[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
 }
 dashboard.section.buttons.val = {
+	dashboard.button("f", icons.documents.Files .. " Find file", ":Telescope find_files <CR>"),
 	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
 	dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
 	dashboard.button("n", "  Open file explorer", ":NvimTreeOpen <CR>"),
