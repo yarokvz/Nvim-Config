@@ -43,9 +43,9 @@ require('packer').startup(function()
 
     --lsp plugins
     use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-    -- use 'williamboman/mason.nvim'
-    -- use 'williamboman/mason-lspconfig.nvim'
-    use 'williamboman/nvim-lsp-installer'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
+    --use 'williamboman/nvim-lsp-installer'
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
@@ -73,12 +73,18 @@ require('packer').startup(function()
 
     --file explorer
     use 'matbme/JABS.nvim'
+    -- use {
+    --     'nvim-neo-tree/neo-tree.nvim',
+    --     requires = {
+    --         "nvim-tree/nvim-web-devicons",
+    --         "MunifTanjim/nui.nvim"
+    --     }
+    -- }
     use {
         'kyazdani42/nvim-tree.lua',
         requires = {
             'kyazdani42/nvim-web-devicons', -- optional, for file icon
         },
-        config = function() require 'nvim-tree'.setup {} end
     }
 
     --terminal
@@ -95,4 +101,6 @@ require('packer').startup(function()
         "NTBBloodbath/rest.nvim",
         requires = { "nvim-lua/plenary.nvim" },
     }
+
+    use "folke/neodev.nvim"
 end)

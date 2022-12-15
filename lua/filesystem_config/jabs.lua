@@ -5,7 +5,7 @@ end
 
 local ui = vim.api.nvim_list_uis()[1]
 
-require 'jabs'.setup {
+jabs.setup {
     position = 'center', -- center, corner
     width = 50,
     height = 10,

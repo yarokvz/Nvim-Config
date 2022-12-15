@@ -15,6 +15,9 @@ null_ls.setup({
         --formatting.stylua,
         --formatting.shfmt,
         formatting.autopep8,
+        formatting.clang_format.with({
+            extra_args = { "--length", row_offset = -2 }
+        })
         --formatting.google_java_format,
         -- diagnostics.flake8,
     },

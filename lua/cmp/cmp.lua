@@ -1,5 +1,5 @@
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+-- vim.o.completeopt = 'menuone,noselect'
 
 local check_backspace = function()
     local col = vim.fn.col "." - 1
@@ -16,19 +16,21 @@ if not snip_status_ok then
     return
 end
 
+require("luasnip/loaders/from_vscode").lazy_load()
+
 -- local tabnine_status_ok, _ = pcall(require, "lsp.tabnine")
 -- if not tabnine_status_ok then
 --     return
 -- end
 
-local compare = require "cmp.config.compare"
+-- local compare = require "cmp.config.compare"
 
-local buffer_fts = {
-    "markdown",
-    "toml",
-    "yaml",
-    "json",
-}
+-- local buffer_fts = {
+--     "markdown",
+--     "toml",
+--     "yaml",
+--     "json",
+-- }
 
 --icons for autocompletion
 local icons = require "own_config.icons"
@@ -39,7 +41,7 @@ vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
 
 --vim.g.colorizer_auto_color = 1
 --vim.g.colorizer_x11_names = 1
-vim.g.cmp_active = true
+-- vim.g.cmp_active = true
 
 -- nvim-cmp setup
 cmp.setup {
@@ -151,10 +153,11 @@ cmp.setup {
     },
     window = {
         documentation = cmp.config.window.bordered(),
-        completion = {
-            border = "rounded",
-            winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
-        },
+        completion = cmp.config.window.bordered()
+        -- completion = {
+        --     border = "rounded",
+        --     winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
+        -- },
     },
     experimental = {
         ghost_text = true,

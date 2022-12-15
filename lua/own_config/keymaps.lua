@@ -61,6 +61,7 @@ keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope git_branches<CR>", opts)
 keymap("n", "<leader>fc", ":Telescope git_commits<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 -- keymap("n", "<leader>p", ":Telescope project<CR>", opts)
 
 -- Terminal --
@@ -75,7 +76,7 @@ keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, sil
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
 -- Y yank until the end of line  (note: this is now a default on master)
-keymap('n', 'Y', 'y$', { noremap = true })
+-- keymap('n', 'Y', 'y$', { noremap = true })
 
 vim.api.nvim_set_keymap(
     "n",
