@@ -7,6 +7,7 @@ require('illuminate').configure({
     providers = {
         'lsp',
         'regex',
+        'treesitter'
     },
     -- delay: delay in milliseconds
     delay = 100,

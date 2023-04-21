@@ -4,6 +4,8 @@ if not status_ok then
 end
 
 local navic = require("nvim-navic")
+local wpm = require("wpm")
+
 
 local hide_in_width = function()
     return vim.fn.winwidth(0) > 80
@@ -82,7 +84,6 @@ lualine.setup({
                     readonly = '  ',
                     unnamed = 'unnamed'
                 },
-
                 --	'buffers',
                 --	show_modified_status = true,
                 --show_filename_only = true,
@@ -94,7 +95,11 @@ lualine.setup({
             },
         },
         -- lualine_x = { "encoding", "fileformat", "filetype" },
-        lualine_x = {}, --"fileformat"},
+        -- lualine_x = {}, --"fileformat"},
+        lualine_x = { wpm.wpm,
+            wpm.historic_graph,
+            require('pomodoro').statusline
+        },
         --lualine_y = { navic_func },--, cond = navic.is_available },
         lualine_y = { "progress" },
         lualine_z = { mode }

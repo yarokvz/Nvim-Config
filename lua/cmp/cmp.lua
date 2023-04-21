@@ -16,7 +16,7 @@ if not snip_status_ok then
     return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+-- require("luasnip.loaders.from_vscode").lazy_load({ language = "css" })
 
 -- local tabnine_status_ok, _ = pcall(require, "lsp.tabnine")
 -- if not tabnine_status_ok then
@@ -115,7 +115,7 @@ cmp.setup {
             -- end
             vim_item.menu = ({
                 nvim_lsp = "[LSP]",
-                luasnip = "[Snippet]",
+                -- luasnip = "[Snippet]",
                 buffer = "[Buffer]",
                 path = "[Path]",
                 -- nvim_lsp = "[lsp]",
@@ -131,7 +131,7 @@ cmp.setup {
     },
     sources = {
         { name = 'nvim_lsp' },
-        { name = 'nvim-lua' },
+        -- { name = 'nvim-lua' },
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },

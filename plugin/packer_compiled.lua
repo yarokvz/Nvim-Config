@@ -109,6 +109,16 @@ _G.packer_plugins = {
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["emmet-vim"] = {
+    loaded = true,
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/emmet-vim",
+    url = "https://github.com/mattn/emmet-vim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -144,6 +154,11 @@ _G.packer_plugins = {
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/neodev.nvim",
     url = "https://github.com/folke/neodev.nvim"
   },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
@@ -163,6 +178,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -194,6 +219,11 @@ _G.packer_plugins = {
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
+  nvterm = {
+    loaded = true,
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/nvterm",
+    url = "https://github.com/NvChad/nvterm"
+  },
   ["onedark.nvim"] = {
     loaded = true,
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/onedark.nvim",
@@ -214,6 +244,12 @@ _G.packer_plugins = {
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["pomodoro.nvim"] = {
+    config = { "\27LJ\2\2…\1\0\0\2\0\4\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0B\0\2\1K\0\1\0\1\0\4\20time_break_long\3\20\14time_work\3\25\21time_break_short\3\5\25timers_to_long_break\3\4\nsetup\rpomodoro\frequire\0" },
+    loaded = true,
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/pomodoro.nvim",
+    url = "https://github.com/wthollingsworth/pomodoro.nvim"
+  },
   ["rest.nvim"] = {
     loaded = true,
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/rest.nvim",
@@ -224,10 +260,20 @@ _G.packer_plugins = {
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["toggleterm.nvim"] = {
+  undotree = {
     loaded = true,
-    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
-    url = "https://github.com/akinsho/toggleterm.nvim"
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/undotree",
+    url = "https://github.com/mbbill/undotree"
+  },
+  ["vim-astro"] = {
+    loaded = true,
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/vim-astro",
+    url = "https://github.com/wuelnerdotexe/vim-astro"
+  },
+  ["vim-be-good"] = {
+    loaded = true,
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/vim-be-good",
+    url = "https://github.com/ThePrimeagen/vim-be-good"
   },
   ["vim-commentary"] = {
     loaded = true,
@@ -248,10 +294,24 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
     url = "https://github.com/tpope/vim-rhubarb"
+  },
+  ["wpm.nvim"] = {
+    config = { "\27LJ\2\0025\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\bwpm\frequire\0" },
+    loaded = true,
+    path = "/home/yaroslav/.local/share/nvim/site/pack/packer/start/wpm.nvim",
+    url = "https://github.com/jcdickinson/wpm.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: pomodoro.nvim
+time([[Config for pomodoro.nvim]], true)
+try_loadstring("\27LJ\2\2…\1\0\0\2\0\4\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0B\0\2\1K\0\1\0\1\0\4\20time_break_long\3\20\14time_work\3\25\21time_break_short\3\5\25timers_to_long_break\3\4\nsetup\rpomodoro\frequire\0", "config", "pomodoro.nvim")
+time([[Config for pomodoro.nvim]], false)
+-- Config for: wpm.nvim
+time([[Config for wpm.nvim]], true)
+try_loadstring("\27LJ\2\0025\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\bwpm\frequire\0", "config", "wpm.nvim")
+time([[Config for wpm.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

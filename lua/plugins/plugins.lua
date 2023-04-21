@@ -18,9 +18,10 @@ require('packer').startup(function()
 
     --git plugins
     use 'tpope/vim-fugitive' -- Git commands in nvim
-    use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
+    use 'tpope/vim-rhubarb'  -- Fugitive-companion to interact with github
     -- Add git related info in the signs columns and popups
     use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+    use "mbbill/undotree"
 
     --comments
     use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
@@ -45,17 +46,34 @@ require('packer').startup(function()
     use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
+
+    --dap (debbuging)
+    use {
+        "mfussenegger/nvim-dap",
+        "rcarriga/nvim-dap-ui"
+    }
+
     --use 'williamboman/nvim-lsp-installer'
     use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-nvim-lua'
+    use 'mattn/emmet-vim'
+    use 'wuelnerdotexe/vim-astro'
+
     -- use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
     use "jose-elias-alvarez/null-ls.nvim"
 
     --lualine and features(navic)
     use 'nvim-lualine/lualine.nvim'
+    use {
+        "jcdickinson/wpm.nvim",
+        config = function()
+            require("wpm").setup({
+            })
+        end
+    }
     use {
         "SmiteshP/nvim-navic",
         requires = "neovim/nvim-lspconfig"
@@ -64,6 +82,7 @@ require('packer').startup(function()
     --snippets
     use 'L3MON4D3/LuaSnip' -- Snippets plugin
     use 'rafamadriz/friendly-snippets'
+    use 'saadparwaiz1/cmp_luasnip'
 
     --colorizer
     use 'norcalli/nvim-colorizer.lua'
@@ -73,13 +92,6 @@ require('packer').startup(function()
 
     --file explorer
     use 'matbme/JABS.nvim'
-    -- use {
-    --     'nvim-neo-tree/neo-tree.nvim',
-    --     requires = {
-    --         "nvim-tree/nvim-web-devicons",
-    --         "MunifTanjim/nui.nvim"
-    --     }
-    -- }
     use {
         'kyazdani42/nvim-tree.lua',
         requires = {
@@ -88,7 +100,8 @@ require('packer').startup(function()
     }
 
     --terminal
-    use 'akinsho/toggleterm.nvim'
+    --    use 'akinsho/toggleterm.nvim'
+    use 'NvChad/nvterm'
 
     --welcome screen
     use 'goolord/alpha-nvim'
@@ -103,4 +116,21 @@ require('packer').startup(function()
     }
 
     use "folke/neodev.nvim"
+    use "ThePrimeagen/vim-be-good"
+
+    --time management
+    use {
+        'wthollingsworth/pomodoro.nvim',
+        requires = 'MunifTanjim/nui.nvim',
+        config = function()
+            require('pomodoro').setup({
+                time_work = 25,
+                time_break_short = 5,
+                time_break_long = 20,
+                timers_to_long_break = 4
+            })
+        end
+    }
 end)
+
+vim.g.astro_javascript = 'enable'

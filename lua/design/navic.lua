@@ -6,7 +6,7 @@ require("lspconfig").clangd.setup {
         navic.attach(client, bufnr)
     end
 }
-require("lspconfig").sumneko_lua.setup {
+require("lspconfig").lua_ls.setup {
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
     end
@@ -56,7 +56,7 @@ navic.setup({
     --     Operator = " ",
     --     TypeParameter = " ",
     -- },
-    highlight             = false,
+    highlight             = true,
     -- separator             = " > ",
     depth_limit           = 0,
     depth_limit_indicator = "..",

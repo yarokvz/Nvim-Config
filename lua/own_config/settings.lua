@@ -45,6 +45,9 @@ local options = {
     --Decrease update time
     updatetime = 250,
     wrap = false, -- display lines as one long line
+
+    undodir = os.getenv("HOME") .. "/.vim/undodir",
+    undofile = true,
 }
 
 --set colorscheme (order important)
@@ -52,6 +55,7 @@ vim.o.termguicolors = true
 vim.g.onedark_terminal_italics = 2
 vim.cmd [[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]] -- this seem to work
 vim.cmd [[colorscheme onedark]]
+
 
 --Set statusbar
 --vim.g.lightline = {

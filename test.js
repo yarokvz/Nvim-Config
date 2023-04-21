@@ -4,4 +4,8 @@ console.log("hello world")
 
 console.info("haha")
 
-con
+consoleOrigin
+cj; adkjs; dasfj
+print
+
+resolveConfig

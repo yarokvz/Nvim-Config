@@ -17,12 +17,6 @@ nvim_tree.setup {
     -- sort_by = "case_sensitive",
     --disable_netrw = true,
     --hijack_netrw = true,
-    --open_on_setup = false,
-    ignore_ft_on_setup = {
-        "startify",
-        "dashboard",
-        "alpha",
-    },
     diagnostics = {
         enable = true,
         show_on_dirs = false,

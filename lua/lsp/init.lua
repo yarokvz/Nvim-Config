@@ -4,7 +4,9 @@ if not status_ok then
 end
 
 -- require "lsp.lsp_installer"
-require "lsp.handlers"
+-- require("lsp.handlers").setup()
+require "lsp.handler"
 require "lsp.mason"
 require "lsp.null"
+require("lsp.dap")
 -- require "lsp.tabnine"
